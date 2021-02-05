@@ -1,0 +1,16 @@
+
+
+
+------- 깃 환경설정(Git Config(환경 설정)) -------
+git config --list   : 
+git config user.name
+git config --global user.name <github-name>
+git config user.email
+git config --global user.email <email>
+git config 한눈에 보기
+cat ~/.gitconfig
+
+
+
+------- 깃 구조(git structure(구조)) -------
+
