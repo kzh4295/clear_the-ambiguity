@@ -58,6 +58,7 @@ git clone url   : 번거로운 파이프 작업보다 수월해짐, 공동 프�
 * revert : 흔적o / history쌓임, 소스 그대로
 * reset : 흔적 x / 위험!! 
 git [revert | reset] --[hard | soft | mixed] 
+: hard는 커밋한 거 완전히 사라짐, soft는 hard빼고 revert든 reset이든 소스는 그대로
 
 git revert revision ID   : mixed option사용, vs코드에서 소스 변경은 없음
 git log -- graph --oneline    : revision ID  사라짐
@@ -74,7 +75,17 @@ git log --graph --oneline   : reset했으므로 revision ID가 흔적없이 사�
              두변경사항 모두 수락 : 나, 우리팀 고친거 모두 반영됨 (두사람이 동시에 동일한 라인을 고친경우 강제로 vs 코드에서 고치고 저장하면 됨)
     
 
-git reset --
+git reset --hard "revision ID"    : commit 한것 완전히 사라짐
+git log --graph --oneline
+git commit -am "last a.py"
+git push :오류 발생시,
+git push -uf origin master
+git add commit push 서버나 리파지토리에서 수정된 것이 각각이면 충돌날 수 있음
+git pull
+
+
+
+
              
              
 
