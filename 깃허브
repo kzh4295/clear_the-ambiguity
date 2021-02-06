@@ -6,20 +6,20 @@ https://www.youtube.com/watch?v=dcXLgM8Txug&list=PLEOnZ6GeucBUvJYvTTnNalSFvYqVOb
 
 
 ------- 깃 환경설정(Git Config(환경 설정)) -------
-git config --list       : git 설정의 목록보기
-git config --list | grep "user.name"        : grep으로 user.name만 필터링
+git config --list       
+git config --list | grep "user.name"        
 git config user.name    : username 설정
-git config --global user.name <github-name>     : global을 붙이면 다른 디렉터리에도 유저네임 저장됨
+git config --global user.name <github-name>     
 git config user.email   :useremail 설정
-git config --global user.email <email>      : global을 붙이면 다른디렉터리에도 유저이메일 저장됨
+git config --global user.email <email>      
 git config 한눈에 보기
-cat ~/.gitconfig        : git config하면 이 파일이 변경됨// cf) /는 디렉터리를 뜻하고 디렉터리들은 마침표 적는 공간에 / 써줌
+cat ~/.gitconfig        
 
 
 ------- 깃 구조(git structure(구조)) ---------->>구글 독스 : 6페이지 그림 ----------------------------------------
-# 워킹 디렉터리 :  로컬 리파지토리에 들어가기 전에 작업하는 공간  >> add : 로컬 리파지토리에 들어갈 준비가 된 것 일뿐 들어간 것은 아님 
-# 로컬 리파지토리 : 나의 컴퓨터의 폴더에 들어가 있는 저장소      >> commit : 로컬에 들어감  // .git 생성되는 위치 // pwd, ll로 위치 파악 잘하자
-# 원격 리파지토리 : = 서버 리파지토리 = 깃서버 = 깃허브        >>  push <-> pull
+# 워킹 디렉터리 :  
+# 로컬 리파지토리 : 
+# 원격 리파지토리 : 
 # read.me 파일은 
 마크다운(#, ## : 제목 크기 조절) 이 가능하넹 다른 파일은 마크다운이 잘 안되는 건가..?
 read.me 파일은 깃허브에서 마크다운으로 입력하면 별도의 터미널 작업은 필요 없는 건가..?
@@ -27,18 +27,18 @@ read.me 파일은 깃허브에서 마크다운으로 입력하면 별도의 터�
 
 
 ----------로컬 저장소 만들기(initialize local repository)-------------------------------------------------------
-cd <work-dir>   : 해당 디렉터리까지 이동하자 항상 헷갈리는데, 상위 디렉터리가 아니라 해당 디렉터리까지!! ex) cd /workspace/study/vocabulary_note
-git init    : ls -al하면 해당 디렉터리에 .git 생성(= 로컬 저장소가 생성)
-.gitignore 파일 작성    : 프로젝트 중 올리기 파일들을 .gitignore파일 안에 파일명만 적으면 안 올라감
-중요) git add --all   : .gitignore 파일 외에 모든 파일을 올리고 싶을 때, 워킹디렉터리와 로컬리파지토리(.git)와 연결
-git add <file명>  또는   git add .     : 일부 파일만 올림 또는 .은 현재 디렉터리에 있는 것만 add
-중요) git commit -am "first commit message"   : 로컬 리파지토리에 commit 되고 a는 add 안된것 포함이므로 생략가능 "메시지"
-중요) git remote add origin <git-remote-url>  : 서버리파지토리와 로컬리파지토리가 파이프로 연결
-중요) git push -u origin master   : 원격 리파지토리에   push  cf) u=upload, -u origin master는 처음만 입력하고 추후 생략가능
-git remote -v   : 원격리파지토리 연결된 것 확인
-git push -fu origin master      : 충돌 무시하고 업로드해라 cf) f=force
+cd <work-dir>   : 
+git init    : 
+.gitignore 파일 작성    : 
+중요) git add --all   : 
+git add <file명>  또는   git add .     : 
+중요) git commit -am "first commit message"   : 
+중요) git remote add origin <git-remote-url>  : 
+중요) git push -u origin master   : 
+git remote -v   : 
+git push -fu origin master      : 
 git log
-git status  # staging 상태 확인
+git status  
 
 
 -----------깃 클론(git clone <github-remote-url>------------------
