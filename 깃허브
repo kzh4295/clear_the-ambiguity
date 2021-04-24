@@ -1,16 +1,96 @@
-
+참고 : 
+https://docs.google.com/presentation/d/13aWrWTDqEDjEamyhkrvo3ulrNQ9jP26DigCopPeAGJg/edit#slide=id.g45a02c83d3_0_0 
+https://www.youtube.com/watch?v=dcXLgM8Txug&list=PLEOnZ6GeucBUvJYvTTnNalSFvYqVObVVH
+시니어코딩(senior coding)선생님 동영상과 자료를 보고 코드 리뷰했습니다.
+---------------------------------------------
 
 
 ------- 깃 환경설정(Git Config(환경 설정)) -------
-git config --list   : 
-git config user.name
-git config --global user.name <github-name>
-git config user.email
-git config --global user.email <email>
-git config 한눈에 보기
-cat ~/.gitconfig
+git config --list   : git 설정의 목록보기      
+git config --list | grep "user.name"    : grep으로 user.name만 필터링     
+git config user.name    : username 설정
+git config --global user.name <github-name>   : global을 붙이면 다른 디렉터리에도 유저네임 저장됨     
+git config user.email   :useremail 설정
+git config --global user.email <email>    : global을 붙이면 다른디렉터리에도 유저이메일 저장됨      
+git config    : git config하면 이 파일이 변경됨// cf) /는 디렉터리를 뜻하고 디렉터리들은 마침표 적는 공간에 / 써줌
+
+cat ~/.gitconfig        
+
+
+------- 깃 구조(git structure(구조)) ---------->>구글 독스 : 6페이지 그림, 10페이지 그림----------------------------------------
+<클라이언트 디렉터리>
+# 워킹 디렉터리   : 로컬 리파지토리에 들어가기 전에 작업하는 공간    >> add(working directory > staging area) : 로컬 리파지토리에 들어갈 준비가 된 것 일뿐 들어간 것은 아님 //add안되면 commit 안됨)  
+# 워킹 디렉터리   : 로컬 리파지토리에 들어가기 전에 작업하는 공간    >> add : 로컬 리파지토리에 들어갈 준비가 된 것 일뿐 들어간 것은 아님   
+# 로컬 리파지토리    : 나의 컴퓨터의 폴더에 들어가 있는 저장소      >> commit(staging area > local repository) : 로컬에 들어감  // .git 생성되는 위치 // pwd, ll로 위치 파악 잘하자
+# 원격 리파지토리    : = 서버 리파지토리 = 깃서버 = 깃허브        >> push(local repository > server repository) <-> pull 
+# read.me 파일은 
+마크다운(#, ## : 제목 크기 조절) 이 가능하넹 다른 파일은 마크다운이 잘 안되는 건가..?
+read.me 파일은 깃허브에서 마크다운으로 입력하면 별도의 터미널 작업은 필요 없는 건가..?
+# branch : 메인 브랜치에서 서브 브랜치로 따냄 <-> merge : 서브 브랜치를 병합
+
+
+----------로컬 저장소 만들기(initialize local repository)-------------------------------------------------------
+cd <work-dir>   : 해당 디렉터리까지 이동하자 항상 헷갈리는데, 상위 디렉터리가 아니라 해당 디렉터리까지!! ex) cd /workspace/study/vocabulary_note
+git init    : ls -al하면 해당 디렉터리에 .git 생성(= 로컬 저장소가 생성)
+.gitignore 파일 작성    : 프로젝트 중 올리기 파일들을 .gitignore파일 안에 파일명만 적으면 안 올라감
+중요) git add --all   : .gitignore 파일 외에 모든 파일을 올리고 싶을 때, 워킹디렉터리와 로컬리파지토리(.git)와 연결
+git add <file명>  또는   git add .     : 일부 파일만 올림 또는 .은 현재 디렉터리에 있는 것만 add
+중요) git commit -am "first commit message"   : 로컬 리파지토리에 commit 되고 a는 add 안된것 포함이므로 생략가능 "메시지(revision할때 중요하니까 의미있게 기록하자!)"
+중요) git remote add origin <git-remote-url>  : 서버리파지토리와 로컬리파지토리가 파이프로 연결 
+중요) git push -u origin master   : 원격 리파지토리에   push  cf) u=upload, -u origin master는 처음만 입력하고 추후 생략가능
+git remote -v   : 원격리파지토리 연결된 것 확인
+git push -fu origin master      : 충돌 무시하고 업로드해라 cf) f=force 
+(= git push origin +master)
+git log   :commit한 것들 나옴
+git status    : staging 상태 확인, add하고 명령어 입력하면 add 된 것 들 확인 가능 cf) 파일은 add시킨 경우, 수정하고 별도의 add할 필요 없음
+
+
+-----------깃 클론(git clone <github-remote-url>------------------
+cd ..   : 상위 폴더로 이동
+ll
+rm -rf 삭제할 디렉터리
+git clone url   : 번거로운 파이프 작업보다 수월해짐, 공동 프로젝트할 때도 수월
+
+
+-----------Source History Reset & Revert (Git Log & Reset)-----------------
+중요) git log --graph --oneline   : 그래프형태로 한줄에 1개씩 보여줌, revision ID 확인
+    cf) HEAD 현재 = 최신 = 마지막 소스
+* revert : 흔적o / history쌓임, 소스 그대로
+* reset : 흔적 x / 위험!! 
+git [revert | reset] --[hard | soft | mixed] 
+: hard는 커밋한 거 완전히 사라짐, soft는 hard빼고 revert든 reset이든 소스는 그대로
+
+git revert revision ID   : mixed option사용, vs코드에서 소스 변경은 없음
+git log -- graph --oneline    : revision ID  사라짐
+git commit -am "rollback 롤백한 위치 이름"
+git push    : reject (왜? : 커밋은 과거로 돌아갔는데, vs코드의 소스는 그대로) >> 변경 원하는 커밋의 내용처럼 vs코드의 소스를 바꿔라)
+git push -fu origin master      
+(= git push origin +master)
+git commit -am "추가할 내용의 메모"  
+git push
+git log --graph --oneline   : reset했으므로 revision ID가 흔적없이 사라짐
+참고) vs코드에서 한파일이 여러개로 revision 된 경우 오류 발생
+해당 vs코드에서 현재 변경사항 수락 : 상대방 코드 뭉개짐
+             수신 변경사항 수락 : 내 코드가 뭉개짐
+             두변경사항 모두 수락 : 나, 우리팀 고친거 모두 반영됨 (두사람이 동시에 동일한 라인을 고친경우 강제로 vs 코드에서 고치고 저장하면 됨)
+    
+
+git reset --hard "revision ID"    : commit 한것 완전히 사라짐
+git log --graph --oneline
+git commit -am "last a.py"
+git push :오류 발생시,
+git push -uf origin master
+git add commit push 서버나 리파지토리에서 수정된 것이 각각이면 충돌날 수 있음
+git pull
 
 
 
-------- 깃 구조(git structure(구조)) -------
+
+             
+             
+
+
+
+
+
 
